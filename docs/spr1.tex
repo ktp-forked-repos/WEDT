@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{amssymb, amsmath}
+\usepackage{url}
+\usepackage{polski}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc} 
+
+\title{Wprowadzenie do eksploracji danych tekstowych w sieci WWW\\ Sprawozdanie nr 1.\\ \large Ocena narzędzi bioinformatycznych}
+\author{Piotr Jastrzębski\\ Piotr Król \\ Rafał Karolewski}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Szczegółowy opis zadania}\label{opis}
+Należy opracować program, który dla zadanej listy linków do narzędzi bioinformatycznych oceni ich jakość np.~poprzez analizę cytowań danego narzędzia (najpierw należy znaleźć artykuły, które opisują dane narzędzie).
+
+\section{Załozenia projektu}
+
+Wejście - lista narzędzi bioinformatycznych w~formie tekstowej\\
+Wyjście - lista danych narzędzi posortowana według jakości wraz z~wynikiem funkcji oceny
+
+Wyniki funkcji oceny będące miarą jakości zadanych narzędzi wyliczany będzie według następujących kryteriów:
+\begin{itemize}
+	\item \textbf{Liczba artykułów, w~których wystąpiło odniesienie do danego narzędzia}
+	\item \textbf{Liczba cytowań}
+	\item \textbf{\emph{h-indeks} autora źródła, w~którym wystąpiło odniesienie do narzędzia }
+	\item \textbf{\emph{h-indeks} autorów cytowań}
+	\item \textbf{liczba wyników zwracanych dla zapytania Google ,,[narzędzie] bioinformatics''}
+	\item \textbf{liczba artykułów na Wikipedii odnoszących się do narzędzia}
+\end{itemize}
+
+Ogólny współczynnik jakości wyliczony zostanie jako średnia ważona wszystkich kryteriów z~odpowiednio dobranymi wagami. Wektor wag zostanie wyznaczony na podstawie ważności poszczególnych kryteriów.
+
+\section{Narzędzia do wydobywania wiedzy}
+
+\begin{itemize}
+\item \textbf{pubMed} --  internetowa baza danych obejmująca artykuły z~dziedziny medycyny i~nauk biologicznych \cite{pubmed}
+\item \textbf{Google Scholar} \cite{scholar}
+\item \textbf{Google API} \cite{googleApi}
+\item \textbf{MediaWiki API} \cite{mediaWiki}
+\item \textbf{web2py} \cite{web2py}
+\end{itemize}
+
+\section{Implementacja}
+Ze względu na uniwersalność planujemy użycie języka Python. Doskonale sprawdzi się on w~przetwarzaniu tekstów i pozyskiwaniu danych ze stron. Interfejs użytkownika zrealizowany zostanie w formie webowej przy użyciu {H}{T}{M}{L} albo w~formie aplikacji okienkowej Qt.
+
+\subsection{Wczytanie listy narzędzi}
+Lista narzędzi zostanie wczytana z odpowiednich pól tekstowych poprzez przeglądarkowy interfejs aplikacji albo z pliku zapisanego w formacie CSV. Interfejs webowy będzie zawierał pola do wpisania listy narzędzi oraz przycisk rozpoczynający przetwarzanie informacji.
+
+\subsection{Zwrócenie wyników}
+Wyniki rankingowania narzędzi zostaną zwrócone w formie tabeli wyświetlonej na stronie wygenerowanej przez aplikację. Tabela ta będzie zawierała dwie kolumny: nazwę narzędzia oraz liczbę uzyskanych punktów rankingowych. Rekordy będą posortowane w kolejności malejącej względem liczby punktów.
+
+\begin{thebibliography}{9}
+\bibitem{scholar}
+  \emph{Google Scholar}
+  \url{http://scholar.google.pl/}
+
+\bibitem{pubMed}
+  \emph{PubMed}
+  \url{http://www.ncbi.nlm.nih.gov/pubmed}
+
+\bibitem{web2py}
+  \emph{web2py}
+  \url{http://www.web2py.com/}
+
+\bibitem{googleApi}
+  \emph{googleApi}
+  \url{https://code.google.com/apis/}
+
+\bibitem{mediaWiki}
+  \emph{MediaWiki API}
+  \url{http://www.mediawiki.org/wiki/API:Main_page}
+
+\end{thebibliography}
+
+\end{document}
